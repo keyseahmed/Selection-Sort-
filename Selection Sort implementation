@@ -1,0 +1,41 @@
+#include <iostream>
+#include<vector>
+
+using namespace std; 
+
+vector<int> selectionSort(vector<int> &nums ) {
+    
+    // go through the array to one by one from left to right
+    for (int i = 0; i < nums.size()-1; i++) {
+        
+        int min_indx = i; // create an index if there is an element that is smaller than the the selected element or nums [i]
+        
+        // go through the elements from the second element to the last element to find if there is an element that is smalller than element that I pick the first loop or nums[i]
+        for (int j = i +1; j < nums.size(); j++) {
+            if (nums[j] < nums[min_indx]) { //find out the minimum elements that is smaller than nums[i] and assign it is index to min_indx so that we can swap for the first element.
+                min_indx = j; // if there is element in the the left is greater than the element in right then I update the min_indx and I will assign it the smallest element 
+            }
+        }
+        
+        if (min_indx != i) { // now if the min_indx is not equal to i I know for sure there is another element that is smaller than the value at index i so i willl swap them. 
+            swap(nums[min_indx], nums[i]); 
+        }
+        
+    }
+    
+    return nums; 
+}
+
+int main()
+{
+   vector<int> nums = {64, 25, 12, 22, 11}; 
+   
+   selectionSort(nums); 
+   
+   for (auto num : nums) {
+       cout << num << " "; 
+   }
+   cout << endl; 
+
+    return 0;
+}
